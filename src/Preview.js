@@ -18,6 +18,7 @@ function Preview() {
   const closePreview = () => {
     dispatch(resetCameraImage());
   };
+  const sendPost = () => {};
   useEffect(() => {
     if (!cameraImage) {
       history.replace("/");
