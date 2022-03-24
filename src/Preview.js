@@ -11,6 +11,9 @@ import CropIcon from "@mui/icons-material/Crop";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
 import "./Preview.css";
+import { db, storage } from "./firebase";
+import { v4 as uuid } from "uuid";
+import firebase from "firebase";
 function Preview() {
   const cameraImage = useSelector(selectCameraImage);
   const history = useHistory();
@@ -18,7 +21,68 @@ function Preview() {
   const closePreview = () => {
     dispatch(resetCameraImage());
   };
-  const sendPost = () => {};
+  // const sendPost = () => {
+  //   const id = uuid();
+  //   const uploadTask = storage
+  //     .ref(`posts/${id}`)
+  //     .putString(cameraImage, "data_url");
+
+  //   uploadTask.on(
+  //     "state_changed",
+  //     null,
+  //     (error) => {
+  //       //error function
+  //       console.log(error);
+  //     },
+  //     () => {
+  //       storage
+  //         .ref("posts")
+  //         .child(id)
+  //         .getDownloadURL()
+  //         .then((url) => {
+  //           db.collections("posts").add({
+  //             imageUrl: url,
+  //             username: "Ritish",
+  //             read: false,
+  //             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //           });
+  //           history.replace("/chats");
+  //         });
+  //     }
+  //   );
+  // };
+
+  const sendPost = () => {
+    const id = uuid();
+    const uploadTask = storage
+      .ref(`posts/${id}`)
+      .putString(cameraImage, "data_url");
+
+    uploadTask.on(
+      "state_changed",
+      null,
+      (error) => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("posts")
+          .child(id)
+          .getDownloadURL()
+          .then((url) => {
+            db.collection("posts").add({
+              imageUrl: url,
+              username: "ritish",
+              read: false,
+              //  profilePic: user.profilePic,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+            history.replace("/chats");
+          });
+      }
+    );
+  };
+
   useEffect(() => {
     if (!cameraImage) {
       history.replace("/");

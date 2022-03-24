@@ -1,0 +1,22 @@
+.chats {
+  display: relative;
+  height: 400px;
+  width: 250px;
+}
+
+.chats_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #059ee0;
+  height: 50px;
+}
+
+.chats_search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding-left: 8px;
+}
