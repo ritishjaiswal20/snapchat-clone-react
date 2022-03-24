@@ -5,7 +5,6 @@ export const cameraSlice = createSlice({
   initialState: {
     cameraImage: null,
   },
-
   reducers: {
     setCameraImage: (state, action) => {
       state.cameraImage = action.payload;

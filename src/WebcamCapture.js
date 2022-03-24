@@ -6,8 +6,8 @@ import { setCameraImage } from "./features/cameraSlice";
 import { useHistory } from "react-router-dom";
 import "./WebcamCapture.css";
 const videoConstraints = {
-  width: 250,
-  height: 400,
+  width: 350,
+  height: 500,
   facingMode: "user",
 };
 
