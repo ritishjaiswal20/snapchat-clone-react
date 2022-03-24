@@ -55,3 +55,25 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.chats_takePicIcon {
+  position: absolute;
+  background-color: white;
+  border-radius: 200px;
+  color: gray;
+  font-size: 40px !important;
+  cursor: pointer;
+  bottom: 20;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.chat_takePicIcon:hover {
+  opacity: 0.8;
+}
+.chats_searchIcon {
+  color: white;
+  font-size: 25px;
+}
+.chats_chatIcon {
+  color: white;
+  font-size: 30px;
+}

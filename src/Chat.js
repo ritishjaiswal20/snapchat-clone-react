@@ -5,7 +5,7 @@ import ReactTimeago from "react-timeago";
 import StopRoundedIcon from "@mui/icons-material/StopRounded";
 import { selectImage, selectUser } from "./features/appSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 import { useHistory } from "react-router-dom";
 // function Chat({ id, username, timestamp, profilePic, read, imageUrl }) {
 //   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ import { useHistory } from "react-router-dom";
 
 const Chat = ({ id, username, timestamp, read, imageUrl, profilePic }) => {
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
   const history = useHistory();
 
   const open = () => {
@@ -61,7 +61,11 @@ const Chat = ({ id, username, timestamp, read, imageUrl, profilePic }) => {
 
   return (
     <div onClick={open} className="chat">
-      <Avatar className="chat_avatar" src={profilePic} />
+      <Avatar
+        src={user.profilePic}
+        onClick={() => auth.signOut()}
+        className="chat_avatar"
+      />
       <div className="chat_info">
         <h4>{username}</h4>
         <p>
