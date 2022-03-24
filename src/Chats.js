@@ -7,7 +7,8 @@ import { db } from "./firebase";
 import Chat from "./Chat";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { resetCameraImage } from "./features/cameraSlice";
 const Chats = () => {
   const [posts, setPosts] = useState([]);
   const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const Chats = () => {
         )
       );
   }, []);
-
+  const takeSnap = () => {
+    dispatch(resetCameraImage());
+    history.push("/");
+  };
   return (
     <div className="chats">
       <div className="chats_header">
@@ -55,6 +59,11 @@ const Chats = () => {
           )
         )}
       </div>
+      <RadioButtonUncheckedIcon
+        className="chats_takePicIcon"
+        onClick={takeSnap}
+        font-size="large"
+      />
     </div>
   );
 };
